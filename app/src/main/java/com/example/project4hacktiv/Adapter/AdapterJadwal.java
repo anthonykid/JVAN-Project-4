@@ -1,6 +1,7 @@
 package com.example.project4hacktiv.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project4hacktiv.JadwalActivity;
 import com.example.project4hacktiv.Model.jadwal.DataBusItem;
 import com.example.project4hacktiv.R;
+import com.example.project4hacktiv.TicketBook;
 
 import java.util.List;
 
@@ -85,7 +88,19 @@ public class AdapterJadwal extends RecyclerView.Adapter<AdapterJadwal.HolderData
             jem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, idUserH.getText(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(context, TicketBook.class);
+                    intent.putExtra("idInt",idUser);
+                    intent.putExtra("tanggalInt",Tanggal);
+                    intent.putExtra("namaAsalInt",namaAsalH.getText().toString());
+                    intent.putExtra("namaTujuanInt",namaTujaunH.getText().toString());
+                    intent.putExtra("idBusInt",idBusH.getText().toString());
+                    intent.putExtra("waktuAsalInt",waktuAsalH.getText().toString());
+                    intent.putExtra("waktuTujuanInt",waktuTujuanH.getText().toString());
+                    intent.putExtra("hargaInt",hargaH.getText().toString());
+                    intent.putExtra("namaBusInt",namaBusH.getText().toString());
+
+                    context.startActivity(intent);
                 }
             });
 

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project4hacktiv">
         <activity
+            android:name=".TicketBook"
+            android:exported="false" />
+        <activity
             android:name=".JadwalActivity"
             android:exported="false" />
         <activity

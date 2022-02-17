@@ -11,21 +11,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:elevation="2dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/bgjadwal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
 
-        android:layout_alignParentBottom="true">
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bgjadwal"
+        android:elevation="2dp"
+        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerAsal"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:id="@+id/containerAsal"
-            android:hint="@string/asal"
-            android:elevation="2dp">
+            android:elevation="2dp"
+            android:hint="@string/asal">
 
             <AutoCompleteTextView
                 android:id="@+id/dropdownAsal"
@@ -35,12 +38,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerTujuan"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:id="@+id/containerTujuan"
             android:layout_below="@+id/containerAsal"
+            android:layout_margin="10dp"
             android:elevation="2dp"
             android:hint="@string/tujuan">
 
@@ -52,12 +55,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerCalendar"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:id="@+id/containerCalendar"
             android:layout_below="@+id/containerTujuan"
+            android:layout_margin="10dp"
             android:elevation="2dp"
             android:hint="@string/tanggal">
 
