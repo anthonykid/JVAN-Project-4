@@ -5,17 +5,8 @@
       <map>
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_splash_screen.xml" value="0.22644927536231885" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/drawable-v24/bgJadwal.xml" value="0.214" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/drawable-v24/bgjadwal.xml" value="0.214" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/drawable-v24/detail4.xml" value="0.214" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.214" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/activity_jadwal.xml" value="0.3625" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/activity_ticket_book.xml" value="0.3625" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/list_item.xml" value="0.38697916666666665" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/netowrk_security_config.xml" value="0.1" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/view_produk.xml" value="0.33" />
-        <entry key="..\:/SMST 7/Praktek/JVAN-Project-4/app/src/main/res/layout/view_ticket.xml" value="0.33" />
+        <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/list_item.xml" value="0.13177083333333334" />
+        <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/view_ticket.xml" value="0.1" />
       </map>
     </option>
   </component>
