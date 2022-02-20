@@ -13,8 +13,11 @@ import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    @GET("getkota.php")
-    Call<Kota> getKota();
+    @GET("getkotaasal.php")
+    Call<Kota> getKotaAsal();
+
+    @GET("getkotatujuan.php")
+    Call<Kota> getKotaTujuan();
 
     @FormUrlEncoded
     @POST("getJadwal.php")

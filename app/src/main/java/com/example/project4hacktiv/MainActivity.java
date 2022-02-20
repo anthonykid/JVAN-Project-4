@@ -36,13 +36,13 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
-    List<DataKotaItem> dataKotaItems;
+    List<DataKotaItem> ListKotaAsal, ListKotaTujuan;
     Button test;
-    String id_kotaAsal, namaKotaAsal, id_kotaTujuan, namaKOtaTujuan,tanggal;
+    String id_kotaAsal="0", namaKotaAsal, id_kotaTujuan="0", namaKOtaTujuan,tanggal="0";
     String idUser = "1";
     Context mContext;
     AutoCompleteTextView ddAsal,ddTujuan, openCal;
-    ArrayAdapter<String> adapterDropdown;
+    ArrayAdapter<String> adapterDropdownAsal, adapterDropdownTujuan;
     Calendar myCalendar;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -102,41 +102,66 @@ public class MainActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*tanggal = valueOf(openCal.getText());
-                Result = "Asal : "+namaKotaAsal+" , " +"Tujuan : "+id_kotaTujuan+" , "+"Tanggal : "+tanggal;
-                Toast.makeText(mContext, Result, Toast.LENGTH_SHORT).show();*/
-
                 tanggal = openCal.getText().toString();
-                Intent intent = new Intent(mContext, JadwalActivity.class);
-                intent.putExtra("idInt",idUser);
-                intent.putExtra("idAsalInt",id_kotaAsal);
-                intent.putExtra("idTujuanInt",id_kotaTujuan);
-                intent.putExtra("tanggalInt",tanggal);
-                intent.putExtra("namaAsalInt",namaKotaAsal);
-                intent.putExtra("namaTujuan",namaKOtaTujuan);
-                mContext.startActivity(intent);
+
+                if((id_kotaAsal.equals(id_kotaTujuan)) && (!tanggal.equals("0"))){
+                    Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(mContext, JadwalActivity.class);
+                    intent.putExtra("idInt", idUser);
+                    intent.putExtra("idAsalInt", id_kotaAsal);
+                    intent.putExtra("idTujuanInt", id_kotaTujuan);
+                    intent.putExtra("tanggalInt", tanggal);
+                    intent.putExtra("namaAsalInt", namaKotaAsal);
+                    intent.putExtra("namaTujuan", namaKOtaTujuan);
+                    mContext.startActivity(intent);
+                }
             }
         });
     }
 
     private void getDataKota(){
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Kota> dataKota = apiInterface.getKota();
 
-        dataKota.enqueue(new Callback<Kota>() {
+        ArrayList<String> listSpinnerAsal = new ArrayList<String>();
+        ArrayList<String> listSpinnerTujuan = new ArrayList<String>();
+
+        Call<Kota> dataKotaAsal = apiInterface.getKotaAsal();
+        Call<Kota> dataKotaTujuan = apiInterface.getKotaTujuan();
+
+        dataKotaAsal.enqueue(new Callback<Kota>() {
             @Override
             public void onResponse(Call<Kota> call, Response<Kota> response) {
                 if (response.body().getMsg() != null){
-                    dataKotaItems = response.body().getDataKota();
+                    ListKotaAsal = response.body().getDataKota();
 
-                    ArrayList<String> listSpinner = new ArrayList<String>();
-
-                    for (int i = 0; i < dataKotaItems.size(); i++){
-                        listSpinner.add(dataKotaItems.get(i).getNamaKota());
+                    for (int i = 0; i < ListKotaAsal.size(); i++){
+                        listSpinnerAsal.add(ListKotaAsal.get(i).getNamaKota());
                     }
-                    adapterDropdown = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinner);
-                    ddTujuan.setAdapter(adapterDropdown);
-                    ddAsal.setAdapter(adapterDropdown);
+                    adapterDropdownAsal = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinnerAsal);
+                    ddAsal.setAdapter(adapterDropdownAsal);
+                }else{
+                    Toast.makeText(MainActivity.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Kota> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "GAGAL KONEK"+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dataKotaTujuan.enqueue(new Callback<Kota>() {
+            @Override
+            public void onResponse(Call<Kota> call, Response<Kota> response) {
+                if (response.body().getMsg() != null){
+                    ListKotaTujuan = response.body().getDataKota();
+
+                    for (int i = 0; i < ListKotaAsal.size(); i++){
+                        listSpinnerTujuan.add(ListKotaTujuan.get(i).getNamaKota());
+                    }
+                    adapterDropdownTujuan = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinnerTujuan);
+                    ddTujuan.setAdapter(adapterDropdownTujuan);
                 }else{
                     Toast.makeText(MainActivity.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
                 }
