@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     List<DataKotaItem> ListKotaAsal, ListKotaTujuan;
     Button test;
-    String id_kotaAsal, namaKotaAsal, id_kotaTujuan, namaKOtaTujuan,tanggal;
+    String id_kotaAsal="0", namaKotaAsal, id_kotaTujuan="0", namaKOtaTujuan,tanggal="0";
     String idUser = "1";
     Context mContext;
     AutoCompleteTextView ddAsal,ddTujuan, openCal;
@@ -102,19 +102,20 @@ public class MainActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*tanggal = valueOf(openCal.getText());
-                Result = "Asal : "+namaKotaAsal+" , " +"Tujuan : "+id_kotaTujuan+" , "+"Tanggal : "+tanggal;
-                Toast.makeText(mContext, Result, Toast.LENGTH_SHORT).show();*/
-
                 tanggal = openCal.getText().toString();
-                Intent intent = new Intent(mContext, JadwalActivity.class);
-                intent.putExtra("idInt",idUser);
-                intent.putExtra("idAsalInt",id_kotaAsal);
-                intent.putExtra("idTujuanInt",id_kotaTujuan);
-                intent.putExtra("tanggalInt",tanggal);
-                intent.putExtra("namaAsalInt",namaKotaAsal);
-                intent.putExtra("namaTujuan",namaKOtaTujuan);
-                mContext.startActivity(intent);
+
+                if((id_kotaAsal.equals(id_kotaTujuan)) && (!tanggal.equals("0"))){
+                    Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(mContext, JadwalActivity.class);
+                    intent.putExtra("idInt", idUser);
+                    intent.putExtra("idAsalInt", id_kotaAsal);
+                    intent.putExtra("idTujuanInt", id_kotaTujuan);
+                    intent.putExtra("tanggalInt", tanggal);
+                    intent.putExtra("namaAsalInt", namaKotaAsal);
+                    intent.putExtra("namaTujuan", namaKOtaTujuan);
+                    mContext.startActivity(intent);
+                }
             }
         });
     }
