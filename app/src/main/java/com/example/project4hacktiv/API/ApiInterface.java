@@ -1,5 +1,7 @@
 package com.example.project4hacktiv.API;
 
+import com.example.project4hacktiv.Model.Login.Login;
+import com.example.project4hacktiv.Model.Register.Register;
 import com.example.project4hacktiv.Model.jadwal.ResponseJadwal;
 import com.example.project4hacktiv.Model.kota.DataKotaItem;
 import com.example.project4hacktiv.Model.kota.Kota;
@@ -40,5 +42,20 @@ public interface ApiInterface {
             @Field("id_user") String id_user,
             @Field("no_kursi") String no_kursi,
             @Field("tanggal") String tanggal
+    );
+
+    @FormUrlEncoded
+    @POST("login.php")
+    Call<Login> loginResponse(
+            @Field("username") String username,
+            @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @POST("register.php")
+    Call<Register> registerResponse(
+            @Field("username") String username,
+            @Field("name") String name,
+            @Field("password") String password
     );
 }

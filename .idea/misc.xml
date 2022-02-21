@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/drawable/bg_rectangle_button.xml" value="0.1455" />
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_jadwal.xml" value="0.11458333333333333" />
+        <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_login.xml" value="0.2526041666666667" />
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_register.xml" value="0.2526041666666667" />
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_splash_screen.xml" value="0.22644927536231885" />
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/activity_ticket_book.xml" value="0.11458333333333333" />
         <entry key="..\:/01Pelajaran/Tambahan/Android/project4hacktiv/app/src/main/res/layout/list_item.xml" value="0.13177083333333334" />
