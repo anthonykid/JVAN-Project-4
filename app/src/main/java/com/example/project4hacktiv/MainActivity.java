@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = this;
 
+        getSupportActionBar().setTitle("Pencarian Tiket");
+
         ddAsal = findViewById(R.id.dropdownAsal);
         ddTujuan = findViewById(R.id.dropdownTujaun);
         openCal = findViewById(R.id.openCalendar);
@@ -106,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if((id_kotaAsal.equals(id_kotaTujuan)) && (!tanggal.equals("0"))){
                     Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(mContext, "Kota Asal dan Kota Tujuan tidak diperbolehkan sama", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     Intent intent = new Intent(mContext, JadwalActivity.class);
                     intent.putExtra("idInt", idUser);
                     intent.putExtra("idAsalInt", id_kotaAsal);

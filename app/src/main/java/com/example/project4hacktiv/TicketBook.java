@@ -50,6 +50,8 @@ public class TicketBook extends AppCompatActivity {
         setContentView(R.layout.activity_ticket_book);
         mContext = this;
 
+        getSupportActionBar().setTitle("List Ticket");
+
         getPrevIntent();
         getBookedSeat();
 

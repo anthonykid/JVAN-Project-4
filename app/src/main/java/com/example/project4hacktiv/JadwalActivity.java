@@ -45,6 +45,8 @@ public class JadwalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jadwal);
 
+        getSupportActionBar().setTitle("Jadwal Ticket");
+
         Intent intent = getIntent();
         idUser = intent.getStringExtra("idInt");
         namaAsal = intent.getStringExtra("namaAsalInt");
