@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.project4hacktiv.API.ApiClient;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
     List<DataKotaItem> ListKotaAsal, ListKotaTujuan;
-    Button test;
+    Button test, test2;
     String id_kotaAsal="0", namaKotaAsal, id_kotaTujuan="0", namaKOtaTujuan,tanggal="0";
     String idUser = "1";
     Context mContext;
@@ -52,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = this;
 
-        getSupportActionBar().setTitle("Pencarian Tiket");
+        Intent intent = getIntent();
+        idUser =  intent.getStringExtra("idInt");
 
         ddAsal = findViewById(R.id.dropdownAsal);
         ddTujuan = findViewById(R.id.dropdownTujaun);
         openCal = findViewById(R.id.openCalendar);
         test = findViewById(R.id.button);
+        test2 = findViewById(R.id.button2);
 
         getDataKota();
         myCalendar = Calendar.getInstance();
@@ -104,13 +105,11 @@ public class MainActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tanggal = openCal.getText().toString();
 
                 if((id_kotaAsal.equals(id_kotaTujuan)) && (!tanggal.equals("0"))){
                     Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
                     Toast.makeText(mContext, "Kota Asal dan Kota Tujuan tidak diperbolehkan sama", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                }else {
                     Intent intent = new Intent(mContext, JadwalActivity.class);
                     intent.putExtra("idInt", idUser);
                     intent.putExtra("idAsalInt", id_kotaAsal);
@@ -120,6 +119,15 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("namaTujuan", namaKOtaTujuan);
                     mContext.startActivity(intent);
                 }
+            }
+        });
+
+        test2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent asd = new Intent(mContext,Historyticket.class);
+                asd.putExtra("idInt",idUser);
+                startActivity(asd);
             }
         });
     }
@@ -142,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < ListKotaAsal.size(); i++){
                         listSpinnerAsal.add(ListKotaAsal.get(i).getNamaKota());
                     }
-                    adapterDropdownAsal = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinnerAsal);
+                    adapterDropdownAsal = new ArrayAdapter<String>(mContext, R.layout.list_item,listSpinnerAsal);
                     ddAsal.setAdapter(adapterDropdownAsal);
                 }else{
                     Toast.makeText(MainActivity.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
@@ -164,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < ListKotaAsal.size(); i++){
                         listSpinnerTujuan.add(ListKotaTujuan.get(i).getNamaKota());
                     }
-                    adapterDropdownTujuan = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinnerTujuan);
+                    adapterDropdownTujuan = new ArrayAdapter<String>(mContext, R.layout.list_item,listSpinnerTujuan);
                     ddTujuan.setAdapter(adapterDropdownTujuan);
                 }else{
                     Toast.makeText(MainActivity.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();

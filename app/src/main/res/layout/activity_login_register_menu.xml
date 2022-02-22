@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/abu"
+    android:background="@color/purple_login"
     tools:context=".LoginActivity">
 
 
@@ -18,44 +18,29 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/projecticon" />
+            android:layout_height="250dp"
+            android:src="@drawable/bintang_login" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif"
-            android:text="LOGIN"
-            android:textColor="#585858"
-            android:textSize="24sp" />
+            android:text="Welcome to Bintang Prima Application"
+            android:textColor="@color/white_txt"
+            android:gravity="center"
+            android:textSize="22sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:text="Join Over 200 Thousand People Who Use Bintang Prima App To Order Their Bus Ticket"
+            android:textColor="@color/white_txt"
+            android:gravity="center"
+            android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/etUsername"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/tvPleaseLogin"
-            android:layout_marginTop="25dp"
-            android:drawableStart="@drawable/ic_baseline_person_24"
-            android:background="@color/white_txt"
-            android:drawablePadding="24dp"
-            android:shadowColor="@color/grey"
-            android:hint="Username" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/etUsername"
-            android:layout_marginTop="12dp"
-            android:drawableStart="@drawable/ic_baseline_lock_24"
-            android:background="@color/white_txt"
-            android:drawablePadding="24dp"
-            android:shadowColor="@color/grey"
-            android:hint="Password"
-            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -64,7 +49,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/mybutton"
             android:text="LOG IN"
-            android:textColor="#FFF" />
+            android:textColor="@color/white_txt" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,7 +58,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="cursive"
             android:text="OR"
-            android:textColor="@color/black" />
+            android:textColor="@color/white_txt" />
 
         <Button
             android:id="@+id/btnRegister"
@@ -82,7 +67,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/mybutton"
             android:text="REGISTER"
-            android:textColor="#FFF" />
+            android:textColor="@color/white_txt" />
 
     </LinearLayout>
 </RelativeLayout>
