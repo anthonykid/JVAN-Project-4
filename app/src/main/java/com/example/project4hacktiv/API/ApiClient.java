@@ -7,8 +7,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static final String URL = "http://192.168.252.223:8080/project4/";
+    private static final String URL = "http://192.168.43.54/project4/";
     //192.168.137.1-172.21.208.1
+    //192.168.43.54
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {

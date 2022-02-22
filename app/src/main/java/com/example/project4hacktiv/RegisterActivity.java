@@ -31,8 +31,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        getSupportActionBar().setTitle("");
-
         etUsername = findViewById(R.id.etRegisterUsername);
         etPassword = findViewById(R.id.etRegisterPassword);
         etName = findViewById(R.id.etRegisterName);
@@ -60,10 +58,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void register(String username, String password, String name) {
+    private void register(String username, String password ,String name) {
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Register> call = apiInterface.registerResponse(username, password, name);
+        Call<Register> call = apiInterface.registerResponse(username, name, password);
         call.enqueue(new Callback<Register>() {
             @Override
             public void onResponse(Call<Register> call, Response<Register> response) {

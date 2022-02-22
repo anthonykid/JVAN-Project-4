@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Project4hacktiv"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetailTicket"
+            android:exported="false" />
+        <activity
+            android:name=".Historyticket"
+            android:exported="false" />
+        <activity
             android:name=".TicketBook"
             android:exported="false" />
         <activity

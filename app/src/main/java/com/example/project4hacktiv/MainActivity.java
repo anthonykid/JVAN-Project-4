@@ -1,9 +1,6 @@
 package com.example.project4hacktiv;
 
-import static java.lang.String.*;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
+import static java.lang.String.valueOf;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -17,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project4hacktiv.API.ApiClient;
 import com.example.project4hacktiv.API.ApiInterface;
@@ -37,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
     List<DataKotaItem> ListKotaAsal, ListKotaTujuan;
-    Button test;
-    String id_kotaAsal="0", namaKotaAsal, id_kotaTujuan="0", namaKOtaTujuan,tanggal="0";
-    String idUser = "1";
+    Button test,test2;
+    String id_kotaAsal, namaKotaAsal, id_kotaTujuan, namaKOtaTujuan,tanggal;
+    String idUser ="0";
     Context mContext;
     AutoCompleteTextView ddAsal,ddTujuan, openCal;
     ArrayAdapter<String> adapterDropdownAsal, adapterDropdownTujuan;
@@ -52,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mContext = this;
 
-        getSupportActionBar().setTitle("Pencarian Tiket");
+        Intent intent = getIntent();
+        idUser =  intent.getStringExtra("idInt");
 
         ddAsal = findViewById(R.id.dropdownAsal);
         ddTujuan = findViewById(R.id.dropdownTujaun);
         openCal = findViewById(R.id.openCalendar);
         test = findViewById(R.id.button);
+        test2 = findViewById(R.id.button2);
 
         getDataKota();
         myCalendar = Calendar.getInstance();
@@ -104,22 +105,28 @@ public class MainActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tanggal = openCal.getText().toString();
+                /*tanggal = valueOf(openCal.getText());
+                Result = "Asal : "+namaKotaAsal+" , " +"Tujuan : "+id_kotaTujuan+" , "+"Tanggal : "+tanggal;
+                Toast.makeText(mContext, Result, Toast.LENGTH_SHORT).show();*/
 
-                if((id_kotaAsal.equals(id_kotaTujuan)) && (!tanggal.equals("0"))){
-                    Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(mContext, "Kota Asal dan Kota Tujuan tidak diperbolehkan sama", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Intent intent = new Intent(mContext, JadwalActivity.class);
-                    intent.putExtra("idInt", idUser);
-                    intent.putExtra("idAsalInt", id_kotaAsal);
-                    intent.putExtra("idTujuanInt", id_kotaTujuan);
-                    intent.putExtra("tanggalInt", tanggal);
-                    intent.putExtra("namaAsalInt", namaKotaAsal);
-                    intent.putExtra("namaTujuan", namaKOtaTujuan);
-                    mContext.startActivity(intent);
-                }
+                tanggal = openCal.getText().toString();
+                Intent intent = new Intent(mContext, JadwalActivity.class);
+                intent.putExtra("idInt",idUser);
+                intent.putExtra("idAsalInt",id_kotaAsal);
+                intent.putExtra("idTujuanInt",id_kotaTujuan);
+                intent.putExtra("tanggalInt",tanggal);
+                intent.putExtra("namaAsalInt",namaKotaAsal);
+                intent.putExtra("namaTujuan",namaKOtaTujuan);
+                mContext.startActivity(intent);
+            }
+        });
+
+        test2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent asd = new Intent(mContext,Historyticket.class);
+                asd.putExtra("idInt",idUser);
+                startActivity(asd);
             }
         });
     }
@@ -142,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < ListKotaAsal.size(); i++){
                         listSpinnerAsal.add(ListKotaAsal.get(i).getNamaKota());
                     }
-                    adapterDropdownAsal = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinnerAsal);
+                    adapterDropdownAsal = new ArrayAdapter<String>(mContext, R.layout.list_item,listSpinnerAsal);
                     ddAsal.setAdapter(adapterDropdownAsal);
                 }else{
                     Toast.makeText(MainActivity.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();
@@ -164,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 0; i < ListKotaAsal.size(); i++){
                         listSpinnerTujuan.add(ListKotaTujuan.get(i).getNamaKota());
                     }
-                    adapterDropdownTujuan = new ArrayAdapter<String>(mContext,R.layout.list_item,listSpinnerTujuan);
+                    adapterDropdownTujuan = new ArrayAdapter<String>(mContext, R.layout.list_item,listSpinnerTujuan);
                     ddTujuan.setAdapter(adapterDropdownTujuan);
                 }else{
                     Toast.makeText(MainActivity.this, response.body().getMsg(), Toast.LENGTH_SHORT).show();

@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class SessionManager {
 
+    public LoginData usersession;
     private Context _context;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -26,6 +27,8 @@ public class SessionManager {
     }
 
     public void createLoginSession(LoginData user){
+
+        usersession = user;
         editor.putBoolean(IS_LOGGED_IN, true);
         editor.putString(USER_ID, user.getUserId());
         editor.putString(USERNAME, user.getUsername());

@@ -2,10 +2,6 @@ package com.example.project4hacktiv;
 
 import static java.lang.String.valueOf;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +13,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.project4hacktiv.API.ApiClient;
 import com.example.project4hacktiv.API.ApiInterface;
-import com.example.project4hacktiv.Adapter.AdapterJadwal;
-import com.example.project4hacktiv.Model.jadwal.ResponseJadwal;
 import com.example.project4hacktiv.Model.seat.DataSeatItem;
 import com.example.project4hacktiv.Model.seat.ResponseGetSeat;
 
@@ -50,20 +48,18 @@ public class TicketBook extends AppCompatActivity {
         setContentView(R.layout.activity_ticket_book);
         mContext = this;
 
-        getSupportActionBar().setTitle("List Ticket");
-
         getPrevIntent();
         getBookedSeat();
 
-        setText(namaBus,namaBusT,R.id.namaBusTicket);
-        setText(idUser,idUserT,R.id.idUserTV2);
-        setText(idBus,idBusT,R.id.idBusTV2);
-        setText(namaAsal,namaAsalT,R.id.namaAsalTV2);
-        setText(namaTujuan,namaTujaunT,R.id.namaTujuanTV2);
-        setText(waktuAsal,waktuAsalT,R.id.waktuAsal2);
-        setText(waktuTujuan,waktuTujuanT,R.id.waktuTujuanTV2);
-        setText(Tanggal,tanggalT,R.id.tanggalTV2);
-        setText(harga,hargaT,R.id.hargaTV2);
+        setText(namaBus,namaBusT, R.id.namaBusTicket);
+        setText(idUser,idUserT, R.id.idUserTV2);
+        setText(idBus,idBusT, R.id.idBusTV2);
+        setText(namaAsal,namaAsalT, R.id.namaAsalTV2);
+        setText(namaTujuan,namaTujaunT, R.id.namaTujuanTV2);
+        setText(waktuAsal,waktuAsalT, R.id.waktuAsal2);
+        setText(waktuTujuan,waktuTujuanT, R.id.waktuTujuanTV2);
+        setText(Tanggal,tanggalT, R.id.tanggalTV2);
+        setText(harga,hargaT, R.id.hargaTV2);
         pilihKursi = findViewById(R.id.pilihKursi);
         insert = findViewById(R.id.pesanTiket);
 
@@ -89,6 +85,7 @@ public class TicketBook extends AppCompatActivity {
 
     private void getPrevIntent(){
         Intent intent = getIntent();
+        //idbooking = intent.getStringExtra("idbook");
         idUser = intent.getStringExtra("idInt");
         namaAsal = intent.getStringExtra("namaAsalInt");
         namaTujuan = intent.getStringExtra("namaTujuanInt");
@@ -129,7 +126,7 @@ public class TicketBook extends AppCompatActivity {
                     Toast.makeText(mContext, response.body().getMsg(), Toast.LENGTH_SHORT).show();
                 }
 
-                adapterDropdown = new ArrayAdapter<String>(mContext,R.layout.list_item,defaultSeat);
+                adapterDropdown = new ArrayAdapter<String>(mContext, R.layout.list_item,defaultSeat);
                 pilihKursi.setAdapter(adapterDropdown);
             }
 
@@ -150,8 +147,8 @@ public class TicketBook extends AppCompatActivity {
                     Toast.makeText(mContext, response.body().getMsg(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(mContext, MainActivity.class);
+                    intent.putExtra("idInt",idUser);
                     mContext.startActivity(intent);
-                    finish();
                 }else{
                     Toast.makeText(mContext, response.body().getMsg(), Toast.LENGTH_SHORT).show();
                 }

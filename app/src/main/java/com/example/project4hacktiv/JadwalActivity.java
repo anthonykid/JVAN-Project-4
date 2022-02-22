@@ -1,17 +1,13 @@
 package com.example.project4hacktiv;
 
-import static android.content.ContentValues.TAG;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.example.project4hacktiv.API.ApiClient;
 import com.example.project4hacktiv.API.ApiInterface;
@@ -29,10 +25,12 @@ import retrofit2.Response;
 public class JadwalActivity extends AppCompatActivity {
 
     List<DataBusItem> listDataBus = new ArrayList<>();
+
     RecyclerView tampilJadwal;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     SwipeRefreshLayout swipeRefreshLayout;
+
     String idUser;
     String namaAsal;
     String namaTujuan;
@@ -44,8 +42,6 @@ public class JadwalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jadwal);
-
-        getSupportActionBar().setTitle("Jadwal Ticket");
 
         Intent intent = getIntent();
         idUser = intent.getStringExtra("idInt");

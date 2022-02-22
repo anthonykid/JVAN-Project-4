@@ -67,15 +67,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<Login> call, Response<Login> response) {
                 if(response.body() != null && response.isSuccessful() && response.body().isStatus()){
 
+
                     // Ini untuk menyimpan sesi
                     sessionManager = new SessionManager(LoginActivity.this);
                     LoginData loginData = response.body().getLoginData();
                     sessionManager.createLoginSession(loginData);
 
                     //Ini untuk pindah
-                    Toast.makeText(LoginActivity.this, "You Are Logged In As : " + response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(LoginActivity.this, response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("idInt",sessionManager.usersession.getUserId());
                     startActivity(intent);
                     finish();
                 } else {
