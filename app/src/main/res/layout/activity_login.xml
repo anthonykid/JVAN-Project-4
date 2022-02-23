@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/abu"
+    android:orientation="vertical"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/projecticon_removebg" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_margin="7dp"
+        android:background="@drawable/bgjadwal"
+        android:elevation="2dp"
         android:orientation="vertical"
         android:padding="16dp">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/projecticon" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,30 +39,39 @@
             android:textSize="24sp" />
 
 
-        <EditText
-            android:id="@+id/etUsername"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerAsal"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/tvPleaseLogin"
-            android:layout_marginTop="25dp"
-            android:drawableStart="@drawable/ic_baseline_person_24"
-            android:background="@color/white_txt"
-            android:drawablePadding="24dp"
-            android:shadowColor="@color/grey"
-            android:hint="Username" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="2dp"
+            android:hint="Username"
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-        <EditText
-            android:id="@+id/etPassword"
+            <AutoCompleteTextView
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/containerpassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/etUsername"
-            android:layout_marginTop="12dp"
-            android:drawableStart="@drawable/ic_baseline_lock_24"
-            android:background="@color/white_txt"
-            android:drawablePadding="24dp"
-            android:shadowColor="@color/grey"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elevation="2dp"
             android:hint="Password"
-            android:inputType="textPassword" />
+            app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+            <AutoCompleteTextView
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"
@@ -83,6 +99,10 @@
             android:background="@drawable/mybutton"
             android:text="REGISTER"
             android:textColor="#FFF" />
-
     </LinearLayout>
-</RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+</LinearLayout>

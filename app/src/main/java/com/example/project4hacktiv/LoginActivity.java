@@ -3,6 +3,7 @@ package com.example.project4hacktiv;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText etUsername, etPassword;
+    AutoCompleteTextView etUsername,etPassword;
     Button btnLogin,btnregister;
     String Username, Password;
     ApiInterface apiInterface;
@@ -74,8 +75,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     //Ini untuk pindah
                     Toast.makeText(LoginActivity.this, "You Are Logged In As : " + response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(LoginActivity.this, response.body().getLoginData().getName(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, response.body().getLoginData().getUserId(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("idInt",response.body().getLoginData().getUserId());
                     startActivity(intent);
                     finish();
                 } else {

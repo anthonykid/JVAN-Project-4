@@ -22,8 +22,10 @@ import com.example.project4hacktiv.API.ApiInterface;
 import com.example.project4hacktiv.Model.seat.DataSeatItem;
 import com.example.project4hacktiv.Model.seat.ResponseGetSeat;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,15 +53,18 @@ public class TicketBook extends AppCompatActivity {
         getPrevIntent();
         getBookedSeat();
 
+        Locale localeID = new Locale( "in" , "ID" );
+        NumberFormat formatRupiah = NumberFormat. getCurrencyInstance (localeID);
+
         setText(namaBus,namaBusT, R.id.namaBusTicket);
-        setText(idUser,idUserT, R.id.idUserTV2);
-        setText(idBus,idBusT, R.id.idBusTV2);
+        setText(idUser,idUserT, R.id.idUserBook);
+        setText(idBus,idBusT, R.id.idBusBook);
         setText(namaAsal,namaAsalT, R.id.namaAsalTV2);
         setText(namaTujuan,namaTujaunT, R.id.namaTujuanTV2);
         setText(waktuAsal,waktuAsalT, R.id.waktuAsal2);
         setText(waktuTujuan,waktuTujuanT, R.id.waktuTujuanTV2);
-        setText(Tanggal,tanggalT, R.id.tanggalTV2);
-        setText(harga,hargaT, R.id.hargaTV2);
+        setText(Tanggal,tanggalT, R.id.tanggalBook);
+        setText(formatRupiah.format((double) Integer.valueOf(harga)),hargaT, R.id.hargaTV2);
         pilihKursi = findViewById(R.id.pilihKursi);
         insert = findViewById(R.id.pesanTiket);
 
@@ -148,7 +153,8 @@ public class TicketBook extends AppCompatActivity {
 
                     Intent intent = new Intent(mContext, MainActivity.class);
                     intent.putExtra("idInt",idUser);
-                    mContext.startActivity(intent);
+                    startActivity(intent);
+
                 }else{
                     Toast.makeText(mContext, response.body().getMsg(), Toast.LENGTH_SHORT).show();
                 }
