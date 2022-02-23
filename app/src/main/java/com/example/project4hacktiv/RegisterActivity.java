@@ -2,6 +2,7 @@ package com.example.project4hacktiv;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     TextView tvLogin;
     String Username, Password, Name;
     ApiInterface apiInterface;
+    String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +64,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void register(String username, String password, String name) {
-
+        String pass = etPassword.getText().toString();
+        if(TextUtils.isEmpty(pass) || pass.length() < 5)
+        {
+            etPassword.setError("You must have 5 characters in your password");
+            return;
+        }
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<Register> call = apiInterface.registerResponse(username, name,password);
         call.enqueue(new Callback<Register>() {
