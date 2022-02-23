@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     List<DataKotaItem> ListKotaAsal, ListKotaTujuan;
     Button test, test2;
     String id_kotaAsal="0", namaKotaAsal, id_kotaTujuan="0", namaKOtaTujuan,tanggal="0";
-    String idUser = "1";
+    String idUser = "0";
     Context mContext;
     AutoCompleteTextView ddAsal,ddTujuan, openCal;
     ArrayAdapter<String> adapterDropdownAsal, adapterDropdownTujuan;
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         String formatTanggal = "dd-MM-yyyy";
                         SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
                         openCal.setText(sdf.format(myCalendar.getTime()));
+                        tanggal = openCal.getText().toString();
                     }
                 },
                         myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
@@ -105,19 +106,23 @@ public class MainActivity extends AppCompatActivity {
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if((id_kotaAsal.equals(id_kotaTujuan)) && (!tanggal.equals("0"))){
+                if ((id_kotaAsal.equals(id_kotaTujuan))) {
                     Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(mContext, "Kota Asal dan Kota Tujuan tidak diperbolehkan sama", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent = new Intent(mContext, JadwalActivity.class);
-                    intent.putExtra("idInt", idUser);
-                    intent.putExtra("idAsalInt", id_kotaAsal);
-                    intent.putExtra("idTujuanInt", id_kotaTujuan);
-                    intent.putExtra("tanggalInt", tanggal);
-                    intent.putExtra("namaAsalInt", namaKotaAsal);
-                    intent.putExtra("namaTujuan", namaKOtaTujuan);
-                    mContext.startActivity(intent);
+                }else if (id_kotaAsal == "0" || id_kotaTujuan == "0") {
+                    Toast.makeText(mContext, "Maaf Isi Data Dengan Benar!", Toast.LENGTH_SHORT).show();
+                }else{
+                    if (tanggal == "0"){
+                        Toast.makeText(mContext, "Tanggal pemesanan belum di atur!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent(mContext, JadwalActivity.class);
+                        intent.putExtra("idInt", idUser);
+                        intent.putExtra("idAsalInt", id_kotaAsal);
+                        intent.putExtra("idTujuanInt", id_kotaTujuan);
+                        intent.putExtra("tanggalInt", tanggal);
+                        intent.putExtra("namaAsalInt", namaKotaAsal);
+                        intent.putExtra("namaTujuan", namaKOtaTujuan);
+                        mContext.startActivity(intent);
+                    }
                 }
             }
         });
@@ -169,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.body().getMsg() != null){
                     ListKotaTujuan = response.body().getDataKota();
 
-                    for (int i = 0; i < ListKotaAsal.size(); i++){
+                    for (int i = 0; i < ListKotaTujuan.size(); i++){
                         listSpinnerTujuan.add(ListKotaTujuan.get(i).getNamaKota());
                     }
                     adapterDropdownTujuan = new ArrayAdapter<String>(mContext, R.layout.list_item,listSpinnerTujuan);

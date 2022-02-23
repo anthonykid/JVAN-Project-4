@@ -3,6 +3,7 @@ package com.example.project4hacktiv;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ import retrofit2.Response;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText etUsername, etPassword, etName;
+    AutoCompleteTextView etUsername, etPassword, etName;
     Button btnRegister;
     TextView tvLogin;
     String Username, Password, Name;
@@ -63,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void register(String username, String password, String name) {
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<Register> call = apiInterface.registerResponse(username, password, name);
+        Call<Register> call = apiInterface.registerResponse(username, name,password);
         call.enqueue(new Callback<Register>() {
             @Override
             public void onResponse(Call<Register> call, Response<Register> response) {

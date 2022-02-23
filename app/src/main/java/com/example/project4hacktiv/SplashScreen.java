@@ -23,14 +23,14 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreen.this, LoginRegisterMenu.class);
+                Intent i = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(i);
 
                 this.finish();
             }
 
             private void finish() {
-                Intent i = new Intent(SplashScreen.this, LoginRegisterMenu.class);
+                Intent i = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(i);
             }
         },splashInterval);

@@ -30,14 +30,7 @@ public class Historyticket extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     SwipeRefreshLayout swipeRefreshLayout;
-
-    String idbooking;
     String idUser;
-    String namaAsal;
-    String namaTujuan;
-    String idAsal;
-    String idTujuan;
-    String Tanggal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +71,7 @@ public class Historyticket extends AppCompatActivity {
         dataHistory.enqueue(new Callback<ResponseHistory>() {
             @Override
             public void onResponse(Call<ResponseHistory> call, Response<ResponseHistory> response) {
-                if (response.body().getMsg() != null){
+                if (response.body().getStatus() == 1){
                     listDataBus = response.body().getDataDetail();
                     adapter = new Adapterdetail(Historyticket.this,listDataBus,idUser);
                     tampildetail.setAdapter(adapter);

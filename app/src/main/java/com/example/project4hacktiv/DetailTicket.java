@@ -8,10 +8,13 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class DetailTicket extends AppCompatActivity {
 
 
-    TextView idUserT, idbookingT, noKursiT,namauserT,tanggalT, waktuAsalT, waktuTujuanT, hargaT, namaBusT, namaAsalT, namaTujaunT;
+    TextView idbookingT, noKursiT,namauserT,tanggalT, waktuAsalT, waktuTujuanT, hargaT, namaBusT, namaAsalT, namaTujaunT;
     String idbooking,namauser,namaAsal, namaTujuan,harga,waktuAsal,idBus,waktuTujuan,namaBus,Tanggal,noKursi;
 
 
@@ -21,6 +24,8 @@ public class DetailTicket extends AppCompatActivity {
         setContentView(R.layout.activity_detail_ticket);
 
         getPrevIntent();
+        Locale localeID = new Locale( "in" , "ID" );
+        NumberFormat formatRupiah = NumberFormat. getCurrencyInstance (localeID);
 
         setText(idbooking,idbookingT, R.id.bkid3);
         setText(namaBus,namaBusT, R.id.namaBusTicket3);
@@ -30,7 +35,7 @@ public class DetailTicket extends AppCompatActivity {
         setText(waktuAsal,waktuAsalT, R.id.waktuAsal3);
         setText(waktuTujuan,waktuTujuanT, R.id.waktuTujuanTV3);
         setText(Tanggal,tanggalT, R.id.tanggalTV3);
-        setText(harga,hargaT, R.id.hargaTV3);
+        setText(formatRupiah.format((double) Integer.valueOf(harga)),hargaT, R.id.hargaTV3);
         setText(noKursi,noKursiT, R.id.idkursiTV3);
 
 
