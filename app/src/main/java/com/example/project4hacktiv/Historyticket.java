@@ -43,6 +43,8 @@ public class Historyticket extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swprf2);
         tampildetail = findViewById(R.id.data_history);
 
+        getSupportActionBar().setTitle("Ticket History");
+
         layoutManager = new LinearLayoutManager(Historyticket.this, LinearLayoutManager.VERTICAL, false);
         tampildetail.setLayoutManager(layoutManager);
 
